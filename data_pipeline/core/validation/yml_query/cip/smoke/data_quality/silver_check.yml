@@ -1,0 +1,15 @@
+queries:
+  Individual_key_uniqueness_check:
+    rank: 1
+    query: |
+      SELECT COUNT(*) AS stats,
+        CASE
+          WHEN COUNT(*) > 0 THEN 'Fail'
+          ELSE 'Pass'
+        END AS multiple_individual_key_assignment
+      FROM (
+        SELECT we_pid
+        FROM ${catalog}.${space}_silver_dd.contact_info
+        GROUP BY we_pid
+        HAVING COUNT(DISTINCT individual_key) > 1
+      ) t;

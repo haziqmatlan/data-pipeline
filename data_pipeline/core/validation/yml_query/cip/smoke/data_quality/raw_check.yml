@@ -1,0 +1,12 @@
+queries:
+  Individual_key_null_check:
+    rank: 1
+    query: |
+      SELECT COUNT(*) AS stats,
+        CASE
+          WHEN COUNT(*) = 0 THEN 'Pass'
+          ELSE 'Fail'
+        END AS individual_key_null_check
+      FROM ${catalog}.${space}_raw_neustar.ci_raw
+      WHERE batch_id = (SELECT MAX(batch_id) FROM ${catalog}.${space}_raw_neustar.ci_raw)
+      AND individual_key is null;
