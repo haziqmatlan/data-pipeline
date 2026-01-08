@@ -1,4 +1,4 @@
-# Data Pipeline - Databricks Asset Bundle (DAB) Project
+# Enterprise Data Pipeline with Databricks Asset Bundles (DAB), CI/CD & Automated Validation
 
 The project demonstrates end-to-end expertise in ETL pipeline development, data quality validation and CI/CD automation which, deployed using **Databricks Asset Bundles (DAB)** for modern CI/CD practices.
 
