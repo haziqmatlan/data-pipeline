@@ -31,6 +31,6 @@ def etl_process(**options):
     re_raw_loc = "data_lake_dev.feature_raw_data.re_raw"
     # Table existence check and append the table
     spark.sql(f"CREATE TABLE IF NOT EXISTS {re_raw_loc} USING DELTA")
-    re_df.write.format("delta").mode("append").saveAsTable(re_raw_loc)
+    re_df.write.format("delta").mode("append").option("mergeSchema", "true").saveAsTable(re_raw_loc)
 
     print(f"Successfully loaded data into {re_raw_loc}")

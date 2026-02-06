@@ -132,7 +132,7 @@ def etl_process(**options):
 
     # Table existence check and append the table
     spark.sql(f"CREATE TABLE IF NOT EXISTS {re_raw_loc} USING DELTA")
-    re_df.write.format("delta").mode("append").saveAsTable(re_raw_loc)
+    re_df.write.format("delta").mode("append").option("mergeSchema", "true").saveAsTable(re_raw_loc)
 ```
 Reasons raw layer is lean:
 - ✅ Faster downstream iteration (as Bronze handle heavy processes)
