@@ -47,11 +47,11 @@ def etl_process(**options):
         "last_name", F.regexp_replace("last_name", r"(?i)[^a-z0-9_-]", "")
     )
 
-    # To standardize phone number
-    format_us_phone_udf = F.udf(us_format_phone, StringType())
-    std_phone_df = spec_char_rmv_df.withColumn(
-        "std_realtor_phone", format_us_phone_udf(F.col("realtor_phone"))
-    )
+    # # To standardize phone number
+    # format_us_phone_udf = F.udf(us_format_phone, StringType())
+    # std_phone_df = spec_char_rmv_df.withColumn(
+    #     "std_realtor_phone", format_us_phone_udf(F.col("realtor_phone"))
+    # )
 
     # To standardize name -------
     name_df = std_phone_df.withColumn(
