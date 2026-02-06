@@ -54,7 +54,7 @@ def etl_process(**options):
     # )
 
     # To standardize name -------
-    name_df = std_phone_df.withColumn(
+    name_df = spec_char_rmv_df.withColumn(
         "std_full_name",
         F.concat_ws(" ", "first_name", "middle_name", "last_name")
     )
